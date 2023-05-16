@@ -6,6 +6,8 @@ entity display is port(
 clk : in std_logic;
 x : in integer range 0 to 1023;
 y : in integer range 0 to 1023;
+posx : in integer range 0 to 1023;
+posy : in integer range 0 to 1023;
 color : out std_logic_vector(7 downto 0));
 end display;
 
@@ -16,8 +18,10 @@ process (clk) is
 begin
 if rising_edge(clk) then
 	if (x >= 19) and (y >= 2) and (x < 659) and (y < 482) then
-		if (x = 19) or (x = 658) or (y = 2) or (y = 481) then	-- biala ramka
+		if (x = 19) or (x = 639+19) or (y = 2) or (y = 481) then	-- biala ramka
 			color <= x"ff";			
+		elsif (x >= posx) and (x < posx + 10) and (y >= posy) and (y < posy + 10) then
+			color <= x"fc";
 		else
 			if (y < 162) then -- czerwony pasek na gorze
 				if (x < 99) then

@@ -4,6 +4,7 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity timings is port(
 clk : in std_logic;
+sw : in std_logic_vector(0 to 3);
 hsync : out std_logic;
 vsync : out std_logic;
 red : out std_logic_vector(2 downto 0);
@@ -19,6 +20,9 @@ signal y : integer range 0 to 1023;
 signal next_x : integer range 0 to 1023;
 signal next_y : integer range 0 to 1023;
 signal rgb : std_logic_vector(7 downto 0);
+
+signal sig_posx : integer range 0 to 1023;
+signal sig_posy : integer range 0 to 1023;
 
 begin
 
@@ -53,7 +57,20 @@ if rising_edge(clk) then
 end if;	
 end process;
 
-fb: entity display port map (clk => clk, x => next_x, y => next_y, color => rgb);
+fb: entity display port map (
+	clk => clk,
+	x => next_x,
+	y => next_y,
+	posx => sig_posx,
+	posy => sig_posy,
+	color => rgb);
+	
+mv: entity mover port map (
+	clk => clk,
+	sw => sw,
+	posx => sig_posx,
+	posy => sig_posy
+);
 
 red <= rgb(7 downto 5);
 green <= rgb(4 downto 2);
