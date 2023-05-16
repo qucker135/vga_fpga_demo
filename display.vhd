@@ -20,11 +20,51 @@ if rising_edge(clk) then
 			color <= x"ff";			
 		else
 			if (y < 162) then -- czerwony pasek na gorze
-				color <= x"e0";
+				if (x < 99) then
+					color <= x"00";
+				elsif (x < 179) then
+					color <= x"20";
+				elsif (x < 259) then
+					color <= x"40";
+				elsif (x < 339) then
+					color <= x"60";
+				elsif (x < 419) then
+					color <= x"80";
+				elsif (x < 499) then
+					color <= x"a0";
+				elsif (x < 579) then
+					color <= x"c0";
+				else
+					color <= x"e0";
+				end if;
 			elsif (y < 322) then -- zielony w srodku
-				color <= x"1c";
+				if (x < 99) then
+					color <= x"00";
+				elsif (x < 179) then
+					color <= x"04";
+				elsif (x < 259) then
+					color <= x"08";
+				elsif (x < 339) then
+					color <= x"0c";
+				elsif (x < 419) then
+					color <= x"10";
+				elsif (x < 499) then
+					color <= x"14";
+				elsif (x < 579) then
+					color <= x"18";
+				else
+					color <= x"1c";
+				end if;
 			else -- niebieski na dole
-				color <= x"03";
+				if (x < 179) then
+					color <= x"00";
+				elsif (x < 339) then
+					color <= x"01";
+				elsif (x < 499) then
+					color <= x"02";
+				else
+					color <= x"03";
+				end if;
 			end if;
 		end if;
 	else

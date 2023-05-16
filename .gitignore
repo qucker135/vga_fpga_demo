@@ -52,4 +52,9 @@ webtalk_pn.xml
 xaw2vhdl.log
 xlnx_auto_0_xdb/
 xst/
+.lso
+display.prj
+display.stx
+display.xst
+display_vhdl.prj
 
