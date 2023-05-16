@@ -41,7 +41,7 @@ architecture Behavioral of mover is
 	signal sig_posx	: integer range 0 to 1023 := 334;
 	signal sig_posy   : integer range 0 to 1023 := 237;
 	
-	signal inner : integer range 0 to (2**19)-1 := 0;
+	signal inner : integer range 0 to (2**17)-1 := 0;
 
 begin
 	process(clk)
