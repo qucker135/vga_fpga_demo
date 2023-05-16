@@ -40,17 +40,19 @@ architecture Behavioral of mover is
 
 	signal sig_posx	: integer range 0 to 1023 := 334;
 	signal sig_posy   : integer range 0 to 1023 := 237;
+	
+	signal inner : integer range 0 to (2**19)-1 := 0;
 
 begin
 	process(clk)
 	begin
 		if rising_edge(clk) then
 			if sw(0) = '1' and sw(1) = '0' then
-				if sig_posx < 649 then
+				if sig_posx < 649 and inner = 0 then
 					sig_posx <= sig_posx + 1;
 				END IF;
 			elsif sw(0) = '0' and sw(1) = '1' then
-				if sig_posx > 19 then
+				if sig_posx > 19 and inner = 0 then
 					sig_posx <= sig_posx - 1;
 				END IF;
 			end if;
@@ -61,14 +63,21 @@ begin
 	begin
 		if rising_edge(clk) then
 			if sw(2) = '1' and sw(3) = '0' then
-				if sig_posy < 472 then
+				if sig_posy < 472 and inner = 0 then
 					sig_posy <= sig_posy + 1;
 				end if;
 			elsif sw(2) = '0' and sw(3) = '1' then
-				if sig_posy > 2 then
+				if sig_posy > 2 and inner = 0 then
 					sig_posy <= sig_posy - 1;
 				end if;
 			end if;
+		end if;
+	end process;
+	
+	process(clk)
+	begin
+		if rising_edge(clk) then
+			inner <= inner + 1;
 		end if;
 	end process;
 

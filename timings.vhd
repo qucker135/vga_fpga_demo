@@ -24,6 +24,8 @@ signal rgb : std_logic_vector(7 downto 0);
 signal sig_posx : integer range 0 to 1023;
 signal sig_posy : integer range 0 to 1023;
 
+signal sig_clk_for_mv : STD_LOGIC;
+
 begin
 
 timings: process (clk) is
