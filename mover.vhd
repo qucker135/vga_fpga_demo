@@ -63,7 +63,7 @@ begin
 	begin
 		if rising_edge(clk) then
 			if sw(2) = '1' and sw(3) = '0' then
-				if sig_posy < 472 and inner = 0 then
+				if sig_posy < 470 and inner = 0 then
 					sig_posy <= sig_posy + 1;
 				end if;
 			elsif sw(2) = '0' and sw(3) = '1' then

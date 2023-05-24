@@ -20,7 +20,7 @@ if rising_edge(clk) then
 	if (x >= 19) and (y >= 2) and (x < 659) and (y < 482) then
 		if (x = 19) or (x = 639+19) or (y = 2) or (y = 481) then	-- biala ramka
 			color <= x"ff";			
-		elsif (x >= posx) and (x < posx + 10) and (y >= posy) and (y < posy + 10) then
+		elsif (x >= posx) and (x < posx + 10) and (y >= posy) and (y < posy + 12) then
 			color <= x"e3";
 		else
 			if (y < 162) then -- czerwony pasek na gorze
